@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi Rawat Inap - VeraMedika</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-house-laptop"></i>
+            </div>
+            <div class="logo-text">
+                <h2>VeraMedika</h2>
+                <span>SIRI Enterprise</span>
+            </div>
+        </div>
+        
+        <nav>
+            <a href="#" class="nav-link active" data-target="dashboard">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard Utama</span>
+            </a>
+            <a href="#" class="nav-link" data-target="pasien-masuk">
+                <i class="fa-solid fa-hospital-user"></i>
+                <span>Pasien Masuk</span>
+            </a>
+            <a href="#" class="nav-link" data-target="pasien-keluar">
+                <i class="fa-solid fa-door-open"></i>
+                <span>Pasien Keluar</span>
+            </a>
+            <a href="#" class="nav-link" data-target="layanan">
+                <i class="fa-solid fa-hand-holding-medical"></i>
+                <span>Tarif Layanan</span>
+            </a>
+            <a href="#" class="nav-link" data-target="laporan-lengkap">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <span>Laporan Lengkap</span>
+            </a>
+        </nav>
+        
+        <div class="user-info">
+            <div class="avatar">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="user-details">
+                <p class="user-name">Prof. Vera Dwi</p>
+                <span class="user-role">Sertifikasi Senior</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="content">
+        <header>
+            <div class="header-title">
+                <h1 id="content-title">Dashboard Utama</h1>
+                <p class="subtitle">Sistem Pemantauan Kapasitas dan Administrasi Rawat Inap</p>
+            </div>
+            <div class="header-meta">
+                <div class="date-badge">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <span id="current-date">-</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="card card-blue">
+                <div class="card-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <div class="info">
+                    <h3>Total Pendapatan</h3>
+                    <p id="stat-pendapatan">Rp 0</p>
+                </div>
+                <div class="card-decoration"></div>
+            </div>
+            <div class="card card-green">
+                <div class="card-icon">
+                    <i class="fa-solid fa-user-injured"></i>
+                </div>
+                <div class="info">
+                    <h3>Jumlah Pasien</h3>
+                    <p id="stat-pasien">0</p>
+                </div>
+                <div class="card-decoration"></div>
+            </div>
+        </div>
+
+        <section id="dashboard" class="view active">
+            <div class="table-container">
+                <h3>
+                    <i class="fa-solid fa-chart-line"></i> 
+                    Statistik Penggunaan Layanan Rawat Inap
+                </h3>
+                <p class="table-description">Simulasi Pengelompokan Data Biaya Pelayanan Rawat Inap (Group By & Having Count)</p>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama Layanan</th>
+                                <th>Jumlah Pasien</th>
+                                <th>Total Penerimaan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-stats">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="pasien-masuk" class="view">
+            <div class="grid-two-columns">
+                <div class="table-container">
+                    <h3>
+                        <i class="fa-solid fa-list-check"></i>
+                        Daftar Aktif Pasien Rawat Inap
+                    </h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No. Reg</th>
+                                    <th>Nama Pasien</th>
+                                    <th>Umur / JK</th>
+                                    <th>Diagnosa Awal</th>
+                                    <th>Tanggal Masuk</th>
+                                    <th>Skema</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body-pasien-masuk">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h3>
+                        <i class="fa-solid fa-user-plus"></i>
+                        Registrasi Pasien Baru
+                    </h3>
+                    <form id="form-registrasi-pasien">
+                        <div class="form-group">
+                            <label for="reg-nama">Nama Lengkap Pasien</label>
+                            <input type="text" id="reg-nama" required placeholder="Nama lengkap pasien...">
+                        </div>
+                        <div class="form-row-double">
+                            <div class="form-group">
+                                <label for="reg-sex">Jenis Kelamin</label>
+                                <select id="reg-sex" required>
+                                    <option value="L">Laki-Laki (L)</option>
+                                    <option value="P">Perempuan (P)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-umur">Umur (Tahun)</label>
+                                <input type="number" id="reg-umur" required min="1" max="120" placeholder="Contoh: 30">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-diagnosa">Diagnosa Klinis</label>
+                            <input type="text" id="reg-diagnosa" required placeholder="Diagnosa awal...">
+                        </div>
+                        <div class="form-row-double">
+                            <div class="form-group">
+                                <label for="reg-tgl">Tanggal Masuk</label>
+                                <input type="date" id="reg-tgl" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-status">Kategori Jaminan</label>
+                                <select id="reg-status" required>
+                                    <option value="BPJS">BPJS Kesehatan</option>
+                                    <option value="Umum">Umum / Pribadi</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-operator">Petugas Penerima (Operator)</label>
+                            <select id="reg-operator" required>
+                                <option value="1">Budi Santoso</option>
+                                <option value="2">Sari Dewi</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-save"></i> Daftarkan Pasien
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="pasien-keluar" class="view">
+            <div class="table-container">
+                <h3>
+                    <i class="fa-solid fa-door-open"></i>
+                    Catatan Pasien Keluar & Penyelesaian Administrasi
+                </h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kode Keluar</th>
+                                <th>No. Registrasi</th>
+                                <th>Tanggal Keluar</th>
+                                <th>Durasi Rawat</th>
+                                <th>Kode Pelayanan</th>
+                                <th>Total Biaya</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-pasien-keluar">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="layanan" class="view">
+            <div class="table-container">
+                <h3>
+                    <i class="fa-solid fa-hand-holding-medical"></i>
+                    Tarif dan Layanan Standar Rawat Inap
+                </h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kode Layanan</th>
+                                <th>Deskripsi Layanan</th>
+                                <th>Tarif Biaya</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-layanan">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="laporan-lengkap" class="view">
+            <div class="table-container">
+                <h3>
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    Laporan Komprehensif Transaksi Pasien Rawat Inap
+                </h3>
+                <p class="table-description">Hasil Rekonstruksi Relasi Kompleks Multitabel Melalui Prosedur Join Berkas Sistem </p>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama Pasien</th>
+                                <th>Diagnosa Akhir</th>
+                                <th>Tanggal Masuk</th>
+                                <th>Tanggal Keluar</th>
+                                <th>Durasi</th>
+                                <th>Paket Layanan</th>
+                                <th>Total Tagihan</th>
+                                <th>Operator Validasi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-laporan-lengkap">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
